@@ -24,7 +24,7 @@ end
 
 def print(students)
   students.each_with_index do |student, index|
-    puts "#{index}. #{student[:name]} (#{student[:cohort]} cohort)"
+    puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
   end 
 end
 
@@ -32,7 +32,16 @@ def print_footer(names)
   puts "Overall, we have #{names.count} great students"
 end
 
+def print_with_first_letter(students, letter)
+  names = students.select { |student| student[:name][0] == letter }
+
+  names.each do |name, index|
+    puts "#{index + 1}. #{name[:name]} (#{name[:cohort]} cohort)"
+  end
+end
+
 students = input_students
 print_header
 print(students)
 print_footer(students)
+print_with_first_letter(students, "A")
