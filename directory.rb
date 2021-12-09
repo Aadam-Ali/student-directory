@@ -35,7 +35,7 @@ end
 def print_with_first_letter(students, letter)
   names = students.select { |student| student[:name][0] == letter }
 
-  names.each do |name, index|
+  names.each_with_index do |name, index|
     puts "#{index + 1}. #{name[:name]} (#{name[:cohort]} cohort)"
   end
 end
