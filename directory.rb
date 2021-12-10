@@ -1,8 +1,9 @@
+@students = []
+
 def input_students()
   puts "Please enter the name of the students"
   puts "To finish, hit return twice or type 'stop' "
 
-  students = []
   name = " "
   cohort = " "
 
@@ -19,46 +20,52 @@ def input_students()
     name = values[0]
     cohort = values[1]
 
-    students << {name: name, cohort: cohort.to_sym}
-    puts "We now have #{students.count} students"
+    @students << {name: name, cohort: cohort.to_sym}
+    puts "We now have #{@students.count} students"
   end
-
-  return students
 end
 
-def print_header
+def print_header()
   puts "----------------------------------------"
   puts "The students of Villains Academy"
   puts "----------------------------------------"
 end
 
-def print_students(students)
-  students.each_with_index do |student, index|
+def print_students()
+  @students.each_with_index do |student, index|
     puts (index + 1).to_s.ljust(5) + (student[:name]).ljust(20) + (student[:cohort].to_s + " cohort")
   end 
 end
 
-def print_footer(names)
+def print_footer()
   puts "----------------------------------------"
-  puts "Overall, we have #{names.count} great students"
+  puts "Overall, we have #{@students.count} great students"
   puts "----------------------------------------"
 end
 
-def print_with_first_letter(students, letter)
-  names = students.select { |student| student[:name][0] == letter }
+def print_with_first_letter(letter)
+  names = @students.select { |student| student[:name][0] == letter }
 
   names.each_with_index do |name, index|
     puts (index + 1).to_s.ljust(5) + (name[:name]).ljust(20) + (name[:cohort].to_s + " cohort")
   end
 end
 
-def menu()
-  students = []
+def print_menu()
+  puts "1. Input Students"
+  puts "2. Show Students"
+  puts "9. Exit"
+end
 
+def show_students
+  print_header()
+  print_students()
+  print_footer()
+end
+
+def menu()
   loop do
-    puts "1. Input Students"
-    puts "2. Show Students"
-    puts "9. Exit"
+    print_menu
 
     print "Enter Option: "
     selection = gets.chomp
@@ -67,9 +74,7 @@ def menu()
     when "1"
       students = input_students
     when "2"
-      print_header()
-      print_students(students)
-      print_footer(students)
+      show_students
     when "9"
       exit 
     else
