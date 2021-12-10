@@ -3,7 +3,8 @@ def input_students()
   puts "To finish, just hit return twice"
 
   students = []
-
+  
+  print "Enter name: "
   name = gets.chomp
 
   while !name.empty? do
@@ -11,6 +12,7 @@ def input_students()
     students << {name: name, cohort: :november}
     puts "We now have #{students.count} students"
 
+    print "Enter name: "
     name = gets.chomp
   end
 
@@ -22,7 +24,7 @@ def print_header
   puts "-------------"
 end
 
-def print(students)
+def print_students(students)
   students.each_with_index do |student, index|
     puts (index + 1).to_s.ljust(5) + (student[:name]).ljust(20) + (student[:cohort].to_s + " cohort")
   end 
