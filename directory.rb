@@ -57,11 +57,24 @@ def print_menu()
   puts "9. Exit"
 end
 
-def show_students
+def show_students()
   print_header()
   print_students()
   print_footer()
 end
+
+def process(selection)
+  case selection
+  when "1"
+    students = input_students
+  when "2"
+    show_students
+  when "9"
+    exit 
+  else
+    puts "Did Not Recognise That Option!"
+  end
+end 
 
 def menu()
   loop do
@@ -70,16 +83,7 @@ def menu()
     print "Enter Option: "
     selection = gets.chomp
 
-    case selection
-    when "1"
-      students = input_students
-    when "2"
-      show_students
-    when "9"
-      exit 
-    else
-      puts "Did Not Recognise That Option!"
-    end
+    process(selection)
   end
 end
 
