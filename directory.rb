@@ -23,7 +23,7 @@ def input_students()
     puts "We now have #{students.count} students"
   end
 
-  students
+  return students
 end
 
 def print_header
@@ -39,7 +39,9 @@ def print_students(students)
 end
 
 def print_footer(names)
+  puts "----------------------------------------"
   puts "Overall, we have #{names.count} great students"
+  puts "----------------------------------------"
 end
 
 def print_with_first_letter(students, letter)
@@ -50,8 +52,30 @@ def print_with_first_letter(students, letter)
   end
 end
 
-students = input_students
-print_header
-print_students(students)
-print_footer(students)
-print_with_first_letter(students, "A")
+def menu()
+  students = []
+
+  loop do
+    puts "1. Input Students"
+    puts "2. Show Students"
+    puts "9. Exit"
+
+    print "Enter Option: "
+    selection = gets.chomp
+
+    case selection
+    when "1"
+      students = input_students
+    when "2"
+      print_header()
+      print_students(students)
+      print_footer(students)
+    when "9"
+      exit 
+    else
+      puts "Did Not Recognise That Option!"
+    end
+  end
+end
+
+menu()
